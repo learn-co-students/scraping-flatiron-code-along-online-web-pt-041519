@@ -22,13 +22,13 @@ class Scraper
   end
 
   def get_courses
-    get_page.css("h2")
+    get_page.css(".post")
   end
 
   def make_courses
     course = Course.new
-      course.title = get_courses.text
-      course.schedule = get_courses.css("#date").text
-      course.description = get_courses.css("p").text
+      course.title = get_courses.first.css("h2").text
+      course.schedule = get_courses.first.css(".date").text
+      course.description = get_courses.first.css("p").text
   end
 end
